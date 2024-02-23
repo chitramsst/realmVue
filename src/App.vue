@@ -1,6 +1,6 @@
 <template>
   <div class="flex w-screen h-screen flex-row">
-    <sidebar/>
+    <!-- <sidebar/> -->
     <div class="bg-blue-100/50 w-full h-screen">
     <RouterView/> 
   </div>
