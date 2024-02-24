@@ -2,8 +2,12 @@
   <div class="flex w-screen h-screen flex-row">
     <!-- <sidebar/> -->
     <div class="bg-blue-100/50 w-full h-screen">
-    <RouterView/> 
-  </div>
+      <div class="bg-gradient-to-b to-indigo-700  from-black/90 h-screen relative">
+        <div class="container mx-auto p-2">
+        <RouterView />
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 

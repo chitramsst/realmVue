@@ -1,6 +1,6 @@
 <template class="">
-    <div class="bg-gradient-to-b to-indigo-700  from-black/90 h-screen relative">
-        <div class="container mx-auto p-2">
+ 
+       
             <div
                 class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 max-w-full gap-10 py-10  justify-center items-center">
 
@@ -50,11 +50,11 @@
                     <span class="p-7 text-2xl text-gray-400">+</span>
                 </p>
             </button>
-        </div>
-        <CreateCategoryModal :shown="createModalShown" @close="createModalShown = false" @done="handleDone" />
+            <CreateCategoryModal :shown="createModalShown" @close="createModalShown = false" @done="handleDone" />
         <EditCategoryModal :shown="editModalShown" @close="editModalShown = false" @done="handleDone" ref="editexpensemodal"
             :item="item" />
-    </div>
+
+   
 </template>
 <script lang="ts">
 //import EditCategoryModal from '@/components/Modals/ExpenseCategory/EditExpenseCategoryModal.vue'
