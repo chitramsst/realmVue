@@ -135,3 +135,15 @@ app.on("window-all-closed", () => {
 ipcMain.handle('show-dialog',(event,params) => {
   return dialog.showMessageBox(win,params);
 })
+
+const sendSyncMessage = (message) =>{
+  win.webContents.send('sync-status',message)
+}
+
+const sendSubscriptionMessage = (message) =>{
+  win.webContents.send('subscription-message',message)
+}
+
+
+global.syncMessage = sendSyncMessage;
+global.sendSubscriptionMessage = sendSubscriptionMessage;

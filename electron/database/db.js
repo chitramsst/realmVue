@@ -52,11 +52,11 @@ async function initializeRealm() {
             },
         });
 
-        const dog = realm.write(() => {
-            return realm.create(ExpenseCategory, {name: "Clifford"});
-          });
+        // const dog = realm.write(() => {
+        //     return realm.create(ExpenseCategory, {name: "Clifford"});
+        //   });
 
-          console.log("writeeeeee", dog)
+        //   console.log("writeeeeee", dog)
 
         // realm.syncSession.addConnectionNotification((connection) => {
         //     console.log(connection)

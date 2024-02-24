@@ -19,10 +19,22 @@ window.addEventListener('DOMContentLoaded', () => {
   contextBridge.exposeInMainWorld('ipcRenderer', {
     invoke: (channel, data) => {
       // whitelist channels
-      let validChannels = ['show-dialog'];
+      let validChannels = ['show-dialog','database-function'];
       if (validChannels.includes(channel)) {
         return ipcRenderer.invoke(channel, data);
       }
+    },
+    receive: (channel, func) => {
+      let validChannels = ['sync-status','subscription-message'] 
+      if (validChannels.includes(channel)) {
+        ipcRenderer.on(channel, (event, ...args) => func(...args))
+      }
+    },
+  remove: (channel, func) => {
+    let validChannels = ['sync-status','subscription-message'] 
+    if (validChannels.includes(channel)) {
+      ipcRenderer.off(channel, (event, ...args) => func(...args))
     }
+  },
   })
   
