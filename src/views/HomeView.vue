@@ -1,5 +1,10 @@
 <template class="">
- 
+   <div class="absolute top-5 right-5 h-10 w-10 rounded-full bg-red-500 flex items-center justify-center" @click="logout">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5.636 5.636a9 9 0 1 0 12.728 0M12 3v9" />
+            </svg>
+        </div>
        
             <div
                 class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 max-w-full gap-10 py-10  justify-center items-center">
@@ -143,6 +148,12 @@ export default {
             this.item = item;
             this.editModalShown = true;
             this.$refs.editexpensemodal.setData(item);
+        },
+        logout()
+        {
+            this.$electron('auth',{section : 'logout'}).then((response) => {
+                this.$router.push({name : 'login'})
+            })
         }
     }
 }

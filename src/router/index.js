@@ -1,15 +1,15 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router'
 import DashboardView from '../views/DashboardView.vue'
 import HomeView from '@/views/HomeView.vue'
 
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: window.envVars.isDev == true ? createWebHistory(import.meta.env.BASE_URL) : createWebHashHistory(),
   routes: [
     {
       path: '/',
       name: 'login',
-      component: () => import('../views/Auth/LoginView.vue')
+      component: () => import('../views/auth/LoginView.vue')
     },
     {
       path: '/home',

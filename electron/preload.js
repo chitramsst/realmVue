@@ -36,5 +36,14 @@ window.addEventListener('DOMContentLoaded', () => {
       ipcRenderer.off(channel, (event, ...args) => func(...args))
     }
   },
+  once: (channel, func) => {
+    let validChannels = ['sync-status'] // <-- Array of all ipcMain Channels used in the electron
+    if (validChannels.includes(channel)) {
+      ipcRenderer.once(channel, (event, ...args) => func(...args))
+    }
+  },
   })
   
+  contextBridge.exposeInMainWorld('envVars', {
+    isDev: process.env.IS_DEV == "true" ? true : false,
+  });
