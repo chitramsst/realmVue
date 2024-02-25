@@ -28,7 +28,7 @@
                         </div>
 
                         <div class="flex justify-end">
-                            <p  class="px-4 py-2  hover:text-red-400 text-red-800 rounded">Register</p>
+                            <p  class="px-4 py-2  hover:text-red-400 text-red-800 rounded"  @click.prevent="register">Register</p>
                             <span
                                 class="px-4 py-2 hover:text-indigo-400 text-indigo-600 rounded ml-2 cursor-pointer"
                                 @click.prevent="login">Login</span>
@@ -104,6 +104,47 @@ export default {
                 }
             })
         },
+
+        async register() {
+          
+          const isFormCorrect = await this.v$.$validate();
+          if (!isFormCorrect) {
+              let allerrors = {
+                  'required': 'is required',
+              }
+              let errormsg = ' You have errors \n';
+              this.v$.$errors.forEach((error) => {
+                  let mystring = `•  ${(error.$property.charAt(0).toUpperCase() + error.$property.slice(1)) + ' ' + allerrors[error.$validator]} \n`
+                  errormsg = errormsg += mystring
+              })
+              window.ipcRenderer.invoke('show-dialog', {
+                  title: 'Error',
+                  message: errormsg,
+                  type: 'info',
+              })
+              return;
+          }
+          this.syncing = true;
+          this.$electron('auth', { section: 'register', email: this.email, password: this.password }).then((response) => {
+              if (response.success == true) {
+                  this.$electron('auth', { section: 'check-login' }).then(async (response) => {
+                    //  await this.waitForSyncStatus()
+                     // this.syncing = false;
+                      console.log("hai,,,,,,,,,,,,")
+                      this.$router.push({ name: 'home' })
+                  })
+              }
+              else {
+                  window.ipcRenderer.invoke('show-dialog', {
+                      title: 'Error',
+                      message: response.error,
+                      type: 'info',
+                  })
+                  this.syncing = false;
+              }
+          })
+      },
+
         async waitForSyncStatus() {
 
             return new Promise((resolve, reject) => {

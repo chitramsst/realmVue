@@ -84,7 +84,7 @@ async function logout(data) {
     try {
         await global.mongoApp.currentUser.logOut()
         const db = await getDB();
-        db.close()
+      //  db.close()
         console.log('closing realm')
         return {
             success: true,

@@ -10,7 +10,7 @@
                 class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 max-w-full gap-10 py-10  justify-center items-center">
 
                 <div class="bg-gray-800 p-6 rounded-lg text-white" v-for="category in categories" :key="category._id">
-                    {{ category.name }}
+                    {{ category.name }} {{  category.owner_id }}
 
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="currentColor"
                         version="1.1" id="Capa_1" class="h-5 w-5 text-blue-500 float-right cursor-pointer"
@@ -84,6 +84,9 @@ export default {
             showDeleteConfirmation: false
         }
     },
+    created() {
+        this.getData()
+    },
     mounted() {
         this.getData()
         window.ipcRenderer.receive('subscription-message', this.handleReceiver)
@@ -143,7 +146,6 @@ export default {
             })
             this.showDeleteConfirmation = false;
         },
-
         editItem(item) {
             this.item = item;
             this.editModalShown = true;

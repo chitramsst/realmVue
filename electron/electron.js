@@ -48,12 +48,7 @@ const initializeMongoDB = async () => {
 
   mongoApp = app;
   global.mongoApp = app;
-  console.log("mongo", mongoApp)
 
- //registerUser()
-  //loginUser()
-
-  console.log("current user" + global.mongoApp.currentUser.id)
   // if (user) {
   //   console.log("Current user:", user);
   //   console.log("User ID:", user.id);
@@ -65,54 +60,7 @@ const initializeMongoDB = async () => {
 
 } 
 
-async function loginUser() {
-  const credentials = Realm.Credentials.emailPassword(
-      "chitra@chitra.com",
-      "12345678"
-  );
-  try {
-    const db2 = await getDB();
-      const user = await global.mongoApp.logIn(credentials);
-      console.log(user)
-  }
-  catch (e) {
-      return {
-          error: e.message,
-          success: false
-      }
-  }
-}
-
-
 // Call the registerUser function with the desired email and password
-
-
-async function registerUser() {
- 
-  const userData = {
-    email:"chitra@chitra.com",
-    password:"12345678"
-  }
-  console.log("fgfgfdgdsfgdfsg")
-  try {
-      const user = await global.mongoApp.emailPasswordAuth.registerUser(userData);
-      const credentials = Realm.Credentials.emailPassword(
-        "chitra@chitra.com",
-        "12345678"
-      );
-      const userLog = await global.mongoApp.logIn(credentials);
-    //  const db2 = await getDB();
-     
-  }
-  catch (e) {
-      return {
-          error: e.message,
-          success: false
-      }
-  }
-}
-
-
 require('./database/dbHandler')
 
 app.whenReady().then(() => {

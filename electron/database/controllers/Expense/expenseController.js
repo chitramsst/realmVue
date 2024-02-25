@@ -56,7 +56,13 @@ async function getExpenseCategories(data) {
   const db = await getDB();
   try {
     // Open a transaction.
-    categories = await db.objects("ExpenseCategory");
+
+  //  const categories = await db.objects('ExpenseCategory').filtered('owner_id == $0', global.mongoApp?.currentUser?.id);
+
+// Convert the Realm Results to a regular array for easier manipulation
+//const categoriesArray = Array.from(categories);
+
+    categories = await db.objects("ExpenseCategory").filtered('owner_id == $0', global.mongoApp?.currentUser?.id);
     categories.addListener(onExpenseCategoryChange);
     subscriptionExpenseCategory = categories;
   } catch (e) {
