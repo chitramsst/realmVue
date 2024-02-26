@@ -9,19 +9,22 @@
       </div>
     </div>
   </div>
+  <SynchronizationToaster/>
 </template>
 
 <script>
-import sidebar from './components/Sidebar.vue';
-import header from './components/Header.vue';
-import mainContent from './components/MainContent.vue';
+import SynchronizationToaster from '@/components/Common/SynchronizationToaster.vue'
+// import sidebar from './components/Sidebar.vue';
+// import header from './components/Header.vue';
+// import mainContent from './components/MainContent.vue';
 import { RouterLink, RouterView } from 'vue-router'
 
 export default {
   components: {
-    sidebar,
-    header,
-    mainContent
+    // sidebar,
+    // header,
+    // mainContent,
+    SynchronizationToaster
   }
 }
 </script>

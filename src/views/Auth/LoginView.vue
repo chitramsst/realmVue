@@ -128,8 +128,8 @@ export default {
           this.$electron('auth', { section: 'register', email: this.email, password: this.password }).then((response) => {
               if (response.success == true) {
                   this.$electron('auth', { section: 'check-login' }).then(async (response) => {
-                    //  await this.waitForSyncStatus()
-                     // this.syncing = false;
+                     await this.waitForSyncStatus()
+                     this.syncing = false;
                       console.log("hai,,,,,,,,,,,,")
                       this.$router.push({ name: 'home' })
                   })

@@ -61,8 +61,8 @@ async function initializeRealm() {
         // realm.syncSession.addConnectionNotification((connection) => {
         //     console.log(connection)
         // })
-        // realm.addListener('change',(realm,e) => {
-        // })
+        realm.addListener('change',(realm,e) => {
+        })
 
         // realm.syncSession.addProgressNotification('download','reportIndefinitely',(e,a) => {
         //     global.syncMessage({transferred : e,transferrable : a,type : 'DOWNLOAD'})
