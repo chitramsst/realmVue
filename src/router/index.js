@@ -17,6 +17,11 @@ const router = createRouter({
       component: HomeView
     },
     {
+      path: '/pdf',
+      name: 'pdf',
+      component: () => import('../views/PdfView.vue')
+    },
+    {
       path: '/about',
       name: 'about',
       // route level code-splitting

@@ -2,13 +2,15 @@
   <div class="flex w-screen h-screen flex-row">
     <!-- <sidebar/> -->
     <div class="bg-blue-100/50 w-full h-screen">
-      <div class="bg-gradient-to-b to-indigo-700  from-black/90 h-screen relative">
-        <div class="container mx-auto p-2">
+      <div class="bg-gradient-to-b to-indigo-700  from-black/90 h-full relative">
+        <div class="container mx-auto pt-2 px-2">
         <RouterView />
         </div>
+        <BottomBar/>
       </div>
     </div>
   </div>
+
   <SynchronizationToaster/>
 </template>
 
@@ -18,13 +20,15 @@ import SynchronizationToaster from '@/components/Common/SynchronizationToaster.v
 // import header from './components/Header.vue';
 // import mainContent from './components/MainContent.vue';
 import { RouterLink, RouterView } from 'vue-router'
+import BottomBar from '@/components/Navigation/BottomBar.vue'
 
 export default {
   components: {
     // sidebar,
     // header,
     // mainContent,
-    SynchronizationToaster
+    SynchronizationToaster,
+    BottomBar
   }
 }
 </script>
