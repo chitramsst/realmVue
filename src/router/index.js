@@ -14,12 +14,18 @@ const router = createRouter({
     {
       path: '/home',
       name: 'home',
-      component: HomeView
+      component: HomeView,
+      meta:{
+        sideBar : true,
+      },
     },
     {
       path: '/pdf',
       name: 'pdf',
-      component: () => import('../views/PdfView.vue')
+      component: () => import('../views/PdfView.vue'),
+      meta:{
+        sideBar : true,
+      },
     },
     {
       path: '/about',

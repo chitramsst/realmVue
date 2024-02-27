@@ -1,4 +1,10 @@
 <template>
+       <div class="absolute top-5 right-5 h-10 w-10 rounded-full bg-red-500 flex items-center justify-center" @click="logout">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+            class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5.636 5.636a9 9 0 1 0 12.728 0M12 3v9" />
+        </svg>
+    </div>
     <div
         class="flex flex-row space-x-5 fixed w-full items-end -bottom-1 justify-center bg-indigo-600 py-5 rounded-t-3xl border-indigo-700  border-2 shadow-xl">
         <router-link to="/">
@@ -54,6 +60,17 @@
 </template>
 <script>
 export default {
+    data() {
+        return {
 
+        }
+    },
+    methods: {
+        logout() {
+            this.$electron('auth', { section: 'logout' }).then((response) => {
+                this.$router.push({ name: 'login' })
+            })
+        }
+    }
 }
 </script>

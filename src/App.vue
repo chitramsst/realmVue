@@ -6,7 +6,9 @@
         <div class="container mx-auto pt-2 px-2">
         <RouterView />
         </div>
+        <template v-if="$route.meta.sideBar==true">
         <BottomBar/>
+      </template>
       </div>
     </div>
   </div>
