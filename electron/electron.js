@@ -116,3 +116,46 @@ ipcMain.handle('generate-pdf', (event, args) => {
     
   });
 });
+
+ipcMain.handle('download-report',async (event,params) => {
+  let printWindow = new BrowserWindow({
+    show: false,
+    webPreferences: {
+      preload: path.join(__dirname, 'preload.js'),
+      nodeIntegration: true,
+    },
+  });
+ 
+  printWindow.loadFile(path.join(__dirname, '/html/print-old.html'));
+ 
+  printWindow.webContents.on('did-finish-load', async ()=>{
+    printWindow.webContents.send('print-this',params)
+    await delay(500)
+    const pdfPath = dialog.showSaveDialogSync({
+      filters: [{
+        name: 'Adobe PDF',
+        extensions: ['pdf']
+      }]
+    });
+    if(pdfPath)
+    {
+      printWindow.webContents.printToPDF({
+        printBackground : true,
+       
+      }).then(data => {
+       console.log("data......."+data)
+        fs.writeFile(pdfPath, data, (error) => {
+          if (error) throw error
+          console.log(`Wrote PDF successfully to ${pdfPath}`)
+        })
+      }).catch(error => {
+        console.log(`Failed to write PDF to ${pdfPath}: `, error)
+      })
+    }
+    return true;
+  })
+})
+
+function delay(ms){
+  return new Promise(resolve => setTimeout(resolve, ms))
+}
