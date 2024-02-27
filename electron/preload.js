@@ -19,7 +19,7 @@ window.addEventListener('DOMContentLoaded', () => {
   contextBridge.exposeInMainWorld('ipcRenderer', {
     invoke: (channel, data) => {
       // whitelist channels
-      let validChannels = ['show-dialog','database-function'];
+      let validChannels = ['show-dialog','database-function','generate-pdf'];
       if (validChannels.includes(channel)) {
         return ipcRenderer.invoke(channel, data);
       }
@@ -37,7 +37,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   },
   once: (channel, func) => {
-    let validChannels = ['sync-status'] // <-- Array of all ipcMain Channels used in the electron
+    let validChannels = ['sync-status','generate-pdf'] // <-- Array of all ipcMain Channels used in the electron
     if (validChannels.includes(channel)) {
       ipcRenderer.once(channel, (event, ...args) => func(...args))
     }

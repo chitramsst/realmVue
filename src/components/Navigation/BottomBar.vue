@@ -7,7 +7,7 @@
     </div>
     <div
         class="flex flex-row space-x-5 fixed w-full items-end -bottom-1 justify-center bg-indigo-600 py-5 rounded-t-3xl border-indigo-700  border-2 shadow-xl">
-        <router-link to="/">
+        <router-link to="/home">
             <button class="items-center">
                 <p
                     class="rounded-full text-white bg-indigo-800 h-12 w-12 shadow-2xl flex items-center shadow-gray-50 justify-center">

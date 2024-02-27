@@ -1,7 +1,10 @@
 const { app, BrowserWindow, ipcMain, dialog } = require("electron");
 const path = require("path");
 const { App } = require('realm');
-
+/* pdf */
+const fs = require('fs');
+const PDFDocument = require('pdfkit');
+/* end pdf */
 
 const Realm = require("realm");
 const { getDB } = require('./database/db.js')
@@ -95,3 +98,21 @@ const sendSubscriptionMessage = (message) =>{
 
 global.syncMessage = sendSyncMessage;
 global.sendSubscriptionMessage = sendSubscriptionMessage;
+
+
+ipcMain.handle('generate-pdf', (event, args) => {
+  // Generate PDF document
+  const doc = new PDFDocument();
+  const filePath = 'document.pdf';
+  const stream = fs.createWriteStream(filePath);
+
+  doc.pipe(stream);
+  doc.text('PDF Content Here', 10, 10); // Example content, you can customize this
+  doc.end();
+
+  stream.on('finish', () => {
+    // Send back a message to renderer process with the path of the generated PDF
+    win.webContents.send('pdf-generated', filePath);
+    
+  });
+});

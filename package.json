@@ -16,6 +16,7 @@
     "concurrently": "^8.2.2",
     "cross-env": "^7.0.3",
     "path": "^0.12.7",
+    "pdfkit": "^0.14.0",
     "pinia": "^2.1.7",
     "realm": "^12.6.0",
     "realm-web": "^2.0.0",
